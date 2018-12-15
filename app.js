@@ -44,6 +44,29 @@ app.get('/registered', (req, res) => {
     res.render('registered');
 });
 
+// returns JSON DATA
+app.get('/json', (req, res) => {
+    db.select('name', 'email').from('users').then((users) => {
+        res.json(users);
+    })
+});
+
+// returns one user
+app.get('/oneuser', (req, res) => {
+    db.select('name', 'email').from('users')
+        .then((subscriber) => {
+            // console.log(subscribers)
+            res.render('oneuser', { subscriber: subscriber});
+        })
+});
+
+// returns all users
+app.get('/allusers', (req, res) => {
+    db.select('name', 'email').from('users')
+        .then((subscribers) => {
+            res.render('allusers', { subscribers: subscribers });
+        })
+});
 
 app.listen(3000, () => {
     console.log('App running on port 3000.')
