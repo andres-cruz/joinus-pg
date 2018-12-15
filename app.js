@@ -32,8 +32,9 @@ app.post('/register', (req, res) => {
 
     db('users').insert({
         name: person.name,
-        email: person.email
-    }).then()
+        email: person.email,
+        joined: new Date()
+    }).then(console.log)
 
     // redirects 'thanks' page
     res.redirect('/registered');
